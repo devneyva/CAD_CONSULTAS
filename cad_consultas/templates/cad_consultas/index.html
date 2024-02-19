@@ -1,0 +1,31 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendas de Consultas</title>
+    <h1> Bem-vindo a Rosto & Corpo! </h1>
+    <h2>Somos uma clinica de estetica corporal 💅💇‍♀️</h2>
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="conteiner">
+        <a href="{% url 'cadastro' %}">Cadastrar uma consulta</a>
+        </div class="row">
+        {% for consulta in consultas %}
+            <div class="Col">
+                <img src="media//{{ consulta.imagem }}" class="img-thumbnail" alt="Capa do Procedimento aqui" width=350px>
+                <p> Nome Completo: {{ consulta.nome }}</p>
+                <p> Procedimento:{{ consulta.get_procedimento_display}}</p>
+                <p> Data: {{ consulta.data }}</p>
+                <p> Horário:{{ consulta.horario}} </p><br>
+                <a class="btn btn-danger" href="{% url 'deletar' consulta.id %}">Deletar Consulta</a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>
